@@ -1,6 +1,7 @@
 
 
 /*-------------------------- Navbar with just a Single Text--------------------*/
+import 'package:flutter/cupertino.dart';
 import 'package:techfest/helpers/headers.dart';
 
 class CommonNavbar extends StatelessWidget {
@@ -34,22 +35,36 @@ class CommonNavbar extends StatelessWidget {
         color: Colors.white,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           if(isBack == true) GestureDetector(
             onTap: () => Navigator.pop(context),
             child: Padding(
-              padding: const EdgeInsets.only(top:14.0),
-              child: Icon(Icons.arrow_back,color: kBlackTextColor,size: isMobile(context) ? 19 : 23,),
+              padding: const EdgeInsets.only(top:8.0),
+              child: Icon(Icons.arrow_back_ios,color: kBlackTextColor,size: isMobile(context) ? 19 : 23,),
             )),
-          RotatedBox(quarterTurns: 1,child: mediumCustomSizedBox(context),),
-          if(title != null)Text(
-                 title ?? "",
-                 overflow: TextOverflow.fade,
-                 softWrap: true,
-                 maxLines: 1,
-                 style:largeTextStyle(context)
-               )
+          // RotatedBox(quarterTurns: 1,child: mediumCustomSizedBox(context),),
+          if(title != null)Center(
+            child: Text(
+                   title ?? "",
+                   overflow: TextOverflow.fade,
+                   softWrap: true,
+                   maxLines: 1,
+                   style:mediumLargeTextStyle(context)
+                 ),
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Icon(Icons.insights,color: kBlackTextColor,size: isMobile(context) ? 19 : 23,),
+              RotatedBox(quarterTurns: 1,child: smallCustomSizedBox(context),),
+              Icon(CupertinoIcons.bell,color: kBlackTextColor,size: isMobile(context) ? 19 : 23,),
+              RotatedBox(quarterTurns: 1,child: smallCustomSizedBox(context),),
+              Icon(Icons.more_horiz_sharp,color: kBlackTextColor,size: isMobile(context) ? 19 : 23,),
+              
+            ],
+          )
         ],
       ),
     );
